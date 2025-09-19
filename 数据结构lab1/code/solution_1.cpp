@@ -11,8 +11,9 @@ int main() {
         }
     }
     scanf("%d", &q);
-    int sum = 0;
+    
     for (int i = 1; i <= q; ++i) {
+        int sum = 0;
         int x, y, a, b;
         scanf("%d %d %d %d", &x, &y, &a, &b);
         for (int j = 0; j < a; ++j) {

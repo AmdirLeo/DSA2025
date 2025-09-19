@@ -1,7 +1,7 @@
 #include <cstdio>
 
 int matrix[2001][2001];
-int ssum[2001][2001];
+double ssum[2001][2001];
 
 int main() {
     int n, m, q;
@@ -18,8 +18,8 @@ int main() {
     for (int i = 1; i <= q; ++i) {
         int x, y, a, b;
         scanf("%d %d %d %d", &x, &y, &a, &b);
-        int sum = ssum[x+a-1][y+b-1] - ssum[x-1][y+b-1] - ssum[x+a-1][y-1] + ssum[x-1][y-1];
-        printf("%d\n", sum);
+        double sum = ssum[x+a-1][y+b-1] - ssum[x-1][y+b-1] - ssum[x+a-1][y-1] + ssum[x-1][y-1];
+        printf("%.0f\n", sum);
     }
     return 0;
 }
