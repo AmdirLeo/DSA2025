@@ -1,33 +1,41 @@
-
-#include<bits/stdc++.h>
+#include <iostream>
+#include <stack>
 
 using namespace std;
 
-int main(){
-    ofstream outfile("07.in");
-    for(int i = 0; i < 157; ++i){
-        outfile << "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    }
-    /*outfile<<"JJIIHHGGFFEEDDCCBBAA";
-    string s="AABCCBAA";
-    for(int i=0;i<255;++i){
-        s="CCBB"+s+"BBCC";
-    }
-    outfile<<s;
-    for(int i = 0; i < 79; ++i){
-        outfile << "AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSTTUUVVWWXXYYZZ";
-    }
-    outfile<<"\n";
-    outfile<<"2\n";
-    outfile<<"3072 C\n";
-    outfile<<"3071 B\n";*/
+const int plen_target = 1 << 11;
+const int plen_bound = 1 << 12;
 
-    for(int i = 0; i < 500; ++i){
-        outfile << "\n0 A";
-        outfile << "\n0 B";
-    }       
+stack<char> st;
 
-
-    outfile.close();
-    return 0;
+int main()
+{
+    freopen("07.in", "w", stdout);
+    for(int i = 1; i <= (1 << 11) - 2; i++)
+    {
+        cout << char((i - 1) % 5 + 'A');
+    }
+    cout << "FA";
+    // cout << endl;
+    for(int i = 1; i <= 682; i++)
+    {
+        cout << char(i % 5 + 'A');
+        st.push(char(i % 5 + 'A'));
+        // BCDDCCBB
+    }
+    cout << "FF";
+    while(!st.empty())
+    {
+        char c = st.top();
+        cout << c << c;
+        st.pop();
+    }
+    // cout << endl;
+    for(int i = 1; i <= (1 << 11); i++)
+    {
+        cout << char((i - 1) % 5 + 'A');
+    }
+    cout << endl << "2" << endl;
+    cout << (1 << 11) + 682 << " F" << endl;
+    cout << (1 << 11) << " A" << endl;
 }
