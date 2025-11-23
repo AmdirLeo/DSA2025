@@ -4,7 +4,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
     void init(int n, const int *w, const int *x);
 	
 	void modify_weight(int i, int w);
