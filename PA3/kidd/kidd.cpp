@@ -1,16 +1,15 @@
 #include <cstdio>
 #include <cstdlib>
 
-namespace DS {
 
+static const int N = 12000000;
+static unsigned int lazytag[N];//懒标记，表示该节点区间需要增加的值
+static long long sum[N];//该节点区间和
+static unsigned int lc[N], rc[N];//左右孩子
+long long n, m, flag=1;//flag为节点计数器
 class LazySegTree {
 private:
-    static const int N = 12000000;
-
-    unsigned int lc[N], rc[N];//左右孩子
-    unsigned int lazytag[N];//懒标记，表示该节点区间需要增加的值
-    long long sum[N];//该节点区间和
-    long long n, m, flag;//flag为节点计数器
+    
 
     inline long long compute(unsigned int p, unsigned int left, unsigned int right) {//计算节点p在区间[left,right]的真实值
         return sum[p] + (long long)lazytag[p] * ((long long)right - (long long)left + 1);
@@ -68,7 +67,7 @@ private:
     }
 
 public:
-    LazySegTree() : n(0), m(0), flag(1) {}
+    LazySegTree() {}
 
     void read_input() {
         scanf("%lld%lld", &n, &m);
@@ -91,11 +90,9 @@ public:
     }
 };
 
-}
-
 
 int main() {
-    DS::LazySegTree solver;
+    LazySegTree solver;
     solver.read_input();
     solver.run();
     return 0;
