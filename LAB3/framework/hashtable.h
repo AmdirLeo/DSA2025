@@ -18,6 +18,14 @@ struct hashing_strategy{
 struct naive_hashing: public hashing_strategy{
     int operator()(char* str, int N) override;
 };
+struct bad_hashing : public hashing_strategy
+{
+    int operator()(char *str, int N) override;
+};
+struct good_hashing : public hashing_strategy
+{
+    int operator()(char *str, int N) override;
+};
 struct collision_strategy{
     virtual void init()=0;// pure virtual function
     virtual int operator()(hash_entry* Table, int table_size, int last_choice)=0;
@@ -25,6 +33,18 @@ struct collision_strategy{
 struct linear_probe: public collision_strategy{
     void init();
     int operator()(hash_entry* Table, int table_size, int last_choice) override;
+};
+struct quad_probe: public collision_strategy{
+    int dir;//0left 1right
+    int r;//radius
+    void init();
+    int operator()(hash_entry* Table, int table_size, int last_choice) override;
+};
+struct overflow: public collision_strategy{
+    static const int sz=400031;
+    int p;//pointer to current index
+    int operator()(hash_entry* Table, int table_size, int last_choice) override;
+    void init();
 };
 struct hashtable{
     hash_entry* Table;
@@ -36,7 +56,10 @@ struct hashtable{
     {
         Table = new hash_entry[table_size];
     }
-    bool insert(hash_entry entry){ 
+    bool insert(hash_entry entry){
+       if(dynamic_cast<overflow*>(my_collision)){
+          table_size=overflow::sz;
+       }
        int last_choice = (*my_hashing)(entry.my_string,table_size);
        my_collision->init();
        while(Table[last_choice].my_string!=NULL){ // loop infinitely? return false when no more space?
