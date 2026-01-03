@@ -1,0 +1,54 @@
+OS: Windows11, WSL2:Ubuntu22.04
+CPU: 11th Gen Intel(R) Core(TM) i5-11300H @ 3.10GHz
+RAM: 16GB
+
+hashing type:
+    1=bad_hashing
+    2=good_hashing
+collision strategy:
+    1=linear probe
+    2=quad probe
+    3=overflow
+
+
+test1: n=m=5000
+hashing type: 1 collision strategy: 1
+time: 0.584875s
+hashing type: 1 collision strategy: 2
+time: 0.033178s
+hashing type: 1 collision strategy: 3
+time: 0.298999s
+hashing type: 2 collision strategy: 1
+time: 0.007046s
+hashing type: 2 collision strategy: 2
+time: 0.009362s
+hashing type: 2 collision strategy: 3
+time: 0.006576s
+
+test2: n=m=20000
+hashing type: 1 collision strategy: 1
+time: 8.28206s
+hashing type: 1 collision strategy: 2
+time: 0.322303s
+hashing type: 1 collision strategy: 3
+time: 5.29892s
+hashing type: 2 collision strategy: 1
+time: 0.052504s
+hashing type: 2 collision strategy: 2
+time: 0.03184s
+hashing type: 2 collision strategy: 3
+time: 0.069365s
+
+test3: n=m=100000
+hashing type: 1 collision strategy: 1
+time: 82.3551s
+hashing type: 1 collision strategy: 2
+time: 1.27196s
+hashing type: 1 collision strategy: 3
+time: 57.8181s
+hashing type: 2 collision strategy: 1
+time: 0.088434s
+hashing type: 2 collision strategy: 2
+time: 0.083953s
+hashing type: 2 collision strategy: 3
+time: 1.64032s

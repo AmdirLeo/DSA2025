@@ -41,7 +41,7 @@ struct quad_probe: public collision_strategy{
     int operator()(hash_entry* Table, int table_size, int last_choice) override;
 };
 struct overflow: public collision_strategy{
-    static const int sz=400031;
+    static int sz;
     int p;//pointer to current index
     int operator()(hash_entry* Table, int table_size, int last_choice) override;
     void init();

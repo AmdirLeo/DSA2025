@@ -1,6 +1,8 @@
 #include <cstdio>
 #include<iostream>
+#include<bits/stdc++.h>
 #include "hashtable.h"
+using namespace std;
 
 int main(int argc, char const* argv[]){
     int type;
@@ -12,9 +14,11 @@ int main(int argc, char const* argv[]){
     if(hashing_type==2) hashing=new good_hashing;
     if(collision_strategy_type==1) collision=new linear_probe;
     if(collision_strategy_type==2) collision=new quad_probe;
-    if(collision_strategy_type==1) collision=new overflow;
+    if(collision_strategy_type==3) collision=new overflow;
 
     hashtable table(TABLE_SIZE,hashing, collision);
+    double t1=clock();
+
     while(true){
         scanf("%d", &type);
         if(type == 0){
@@ -25,5 +29,13 @@ int main(int argc, char const* argv[]){
             printf("%d\n", table.query(buffer));
         }else break;
     }
+    double t2=clock();
+    double res=(t2-t1)/CLOCKS_PER_SEC;
+    ofstream f("result.txt",ios::app);
+
+    f<<"hashing type: "<<argv[1]<<" collision strategy: "<<argv[2]<<endl;
+    f<<"time: "<<res<<"s"<<endl;
+    f.close();
+
     return 0;
 }
